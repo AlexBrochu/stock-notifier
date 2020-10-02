@@ -1,3 +1,7 @@
+# My project ignore
+output/*
+vscode_python.code-workspace
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
