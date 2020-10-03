@@ -1,0 +1,94 @@
+{
+    "stocks": [
+        {
+            "name": "ABT.TO",
+            "quantity": 10, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "AC.TO",
+            "quantity": 20, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "ATD-B.TO",
+            "quantity": 5, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BAM-A.TO",
+            "quantity": 19, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BCE.TO",
+            "quantity": 25, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BEP-UN.TO",
+            "quantity": 7, 
+            "limit-buy": 55.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BMO.TO",
+            "quantity": 20, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BNS.TO",
+            "quantity": 25, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "BPY-UN.TO",
+            "quantity": 7, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CAE.TO",
+            "quantity": 6, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CAR-UN.TO",
+            "quantity": 18, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CCL",
+            "quantity": 10, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CHR.TO",
+            "quantity": 40, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CJT.TO",
+            "quantity": 1, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        },
+        {
+            "name": "CU.TO",
+            "quantity": 9, 
+            "limit-buy": 13.5,
+            "limit-sell": 18
+        }
+    ]
+}
