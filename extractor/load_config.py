@@ -6,3 +6,11 @@ def load_stocks():
         data = json.load(f)
     
     return data
+
+def load_portfolio():
+    # Read from config from file. 
+    with open('output/data.json') as f:
+        portfolio = json.load(f)
+    
+    return portfolio
+

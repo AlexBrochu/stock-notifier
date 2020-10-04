@@ -1,19 +1,28 @@
-from extractor.load_config import load_stocks as ld
+from extractor.load_config import load_stocks, load_portfolio
+from notification.notifier import notify_when_stock
 import extractor.extractor as e
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
-from pandas_datareader import data as pdr
+import threading
+#import pandas as pd
+#import numpy as np
+#import matplotlib.pyplot as plt
+#import seaborn as sns
+#from datetime import datetime
+#from pandas_datareader import data as pdr
 
-import yfinance as yf
+def setup_portfolio():
+    data = load_stocks()
 
-data = ld()
+    portfolio = e.build_portfolio(data)
+    # extract portfolio stats 
+    portfolio_stats = e.extract_portfolio_stats(portfolio)
 
-portfolio = e.build_portfolio(data)
-# extract portfolio stats 
-portfolio_stats = e.extract_portfolio_stats(portfolio)
+    e.write_info_to_file(portfolio_stats)
+    e.load_info_from_file()
 
-e.write_info_to_file(portfolio_stats)
-e.load_info_from_file()
+## Setup porfolio
+#setup_portfolio()
+
+## Notify when stock reach asked value
+portfolio = load_portfolio()
+
+threading.Timer(10, notify_when_stock(portfolio)).start()
