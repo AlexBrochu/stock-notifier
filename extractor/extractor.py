@@ -1,4 +1,3 @@
-from load_config import load_stocks as ls
 import yfinance as yf
 import json
 
@@ -21,49 +20,42 @@ def load_info_from_file():
     print("Data type after reconstruction : ", type(js)) 
     print(js) 
 
+def extract_portfolio_stats(portfolio):
+    portfolio_stats = {
+        "total_value": 0
+    }
+    for sector in portfolio:
+        
+        portfolio[sector]['total_value'] = 0
+        for stock in portfolio[sector]['stocks']:
+            portfolio[sector]['total_value'] += stock['current_price']*stock['quantity']
 
-data = ls()
+        portfolio_stats['total_value'] += portfolio[sector]['total_value']
 
-contentFile = {}
-for stock in data['stocks']:
-    tick = yf.Ticker(stock['name'])
-    data = tick.history()
-    last_quote = (data.tail(1)['Close'].iloc[0])
-    stock['current_price'] = last_quote
+    # calcule percentage
+    for sector in portfolio:
+        portfolio[sector]['percentage'] = portfolio[sector]['total_value']/portfolio_stats['total_value']
 
-    currentSector = tick.info['sector']
+    portfolio_stats['details'] = portfolio  
+    return portfolio_stats
 
-    if not currentSector in contentFile:
-        contentFile[currentSector] = {
-            "total_value": 0,
-            "percentage": 0,
-            "stocks" : list()
-        }
-        contentFile[currentSector]['stocks'].append(stock)
-    else:
-        contentFile[currentSector]['stocks'].append(stock)
+def build_portfolio(data):
+    portfolio = {}
+    for stock in data['stocks']:
+        tick = yf.Ticker(stock['name'])
+        data = tick.history()
+        last_quote = (data.tail(1)['Close'].iloc[0])
+        stock['current_price'] = last_quote
 
-# extract portfolio stats
-portfolio_stats = {
-    "total_value": 0
-}
-for sector in contentFile:
-    
-    contentFile[sector]['total_value'] = 0
-    for stock in contentFile[sector]['stocks']:
-        contentFile[sector]['total_value'] += stock['current_price']*stock['quantity']
+        current_sector = tick.info['sector']
 
-    portfolio_stats['total_value'] += contentFile[sector]['total_value']
-
-# calcule percentage
-for sector in contentFile:
-    contentFile[sector]['percentage'] = contentFile[sector]['total_value']/portfolio_stats['total_value']
-
-portfolio_stats['details'] = contentFile   
-
-print(portfolio_stats)
-write_info_to_file(portfolio_stats)
-load_info_from_file()
-
-#for stock in data:
-
+        if not current_sector in portfolio:
+            portfolio[current_sector] = {
+                "total_value": 0,
+                "percentage": 0,
+                "stocks" : list()
+            }
+            portfolio[current_sector]['stocks'].append(stock)
+        else:
+            portfolio[current_sector]['stocks'].append(stock)
+    return portfolio
