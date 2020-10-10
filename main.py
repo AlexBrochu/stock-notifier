@@ -16,8 +16,19 @@ def setup_portfolio():
     # extract portfolio stats 
     portfolio_stats = e.extract_portfolio_stats(portfolio)
 
+    # write to file
     e.write_info_to_file(portfolio_stats)
     e.load_info_from_file()
+    
+
+def thread_notify(portfolio):
+    portfolio = notify_when_stock(portfolio)
+
+    e.write_info_to_file(portfolio)
+    print("===================")
+    print("portfolio updated")
+    print("===================")
+    threading.Timer(10, thread_notify, args=(portfolio,)).start()
 
 ## Setup porfolio
 #setup_portfolio()
@@ -25,4 +36,4 @@ def setup_portfolio():
 ## Notify when stock reach asked value
 portfolio = load_portfolio()
 
-threading.Timer(10, notify_when_stock(portfolio)).start()
+thread_notify(portfolio)
