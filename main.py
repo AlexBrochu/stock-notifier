@@ -20,11 +20,12 @@ def setup_portfolio():
     e.load_info_from_file()
 
 def thread_notify(portfolio):
-    notify_when_stock(portfolio)
+    portfolio = notify_when_stock(portfolio)
+    e.write_info_to_file(portfolio)
     threading.Timer(10, thread_notify, args=(portfolio,)).start()
 
 ## Setup porfolio
-#setup_portfolio()
+#Xsetup_portfolio()
 
 ## Notify when stock reach asked value
 portfolio = load_portfolio()

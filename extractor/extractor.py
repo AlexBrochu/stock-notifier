@@ -42,12 +42,17 @@ def extract_portfolio_stats(portfolio):
 def build_portfolio(data):
     portfolio = {}
     for stock in data['stocks']:
+        print("extract " + stock['name'])
         tick = yf.Ticker(stock['name'])
         data = tick.history()
         last_quote = (data.tail(1)['Close'].iloc[0])
         stock['current_price'] = last_quote
+        stock['total_price'] = stock['current_price'] * stock['quantity']
 
-        current_sector = tick.info['sector']
+        if 'sector' in tick.info.keys(): 
+            current_sector = tick.info['sector']
+        else:
+            current_sector = 'index'
 
         if not current_sector in portfolio:
             portfolio[current_sector] = {
