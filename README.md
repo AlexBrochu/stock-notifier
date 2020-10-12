@@ -29,5 +29,6 @@ This simple project takes in input an array of stocks with the price you paid an
 3. Run main.py
 
 ## TODO
-* Add support for TSX Vanture stock
+* Add support for TSX Venture stock
 * Add notification when there is a dividend
+* Add commandline options
