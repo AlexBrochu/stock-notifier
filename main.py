@@ -2,12 +2,6 @@ from extractor.load_config import load_stocks, load_portfolio
 from notification.notifier import notify_when_stock
 import extractor.extractor as e
 import threading
-#import pandas as pd
-#import numpy as np
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#from datetime import datetime
-#from pandas_datareader import data as pdr
 
 def setup_portfolio():
     data = load_stocks()
