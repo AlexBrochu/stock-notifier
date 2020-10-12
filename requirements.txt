@@ -1,0 +1,4 @@
+notify2==0.3.1
+yfinance==0.1.54
+CurrencyConverter==0.14.3
+currency_converter==0.5.5
